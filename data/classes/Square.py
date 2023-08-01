@@ -14,9 +14,9 @@ class Square:
         self.pos = (x, y)
         self.color = 'light' if (x + y) % 2 == 0 else 'dark'
         self.draw_color = (
-            220, 189, 194) if self.color == 'light' else (53, 53, 53)
+            192, 192, 192) if self.color == 'light' else (105, 105, 105)
         self.highlight_color = (
-            100, 249, 83) if self.color == 'light' else (0, 228, 10)
+            255, 248, 220) if self.color == 'light' else (245, 222, 179)
         self.occupying_piece = None
         self.coord = self.get_coord()
         self.highlight = False
