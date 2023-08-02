@@ -5,13 +5,13 @@ from data.classes.Piece import Piece
 
 class Pawn(Piece):
     def __init__(self, pos, color, board):
-        super().__init__(pos, color, board)
 
+        super().__init__(pos, color, board)
         img_path = 'data/imgs/' + color[0] + '_pawn.png'
         self.img = pygame.image.load(img_path)
         self.img = pygame.transform.scale(
             self.img, (board.tile_width - 35, board.tile_height - 35))
-
+        value = 10 if color == "white" else -10
         self.notation = ' '
 
     def get_possible_moves(self, board):
