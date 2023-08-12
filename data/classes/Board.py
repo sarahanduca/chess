@@ -17,6 +17,7 @@ class Board:
         self.tile_width = width // 8
         self.tile_height = height // 8
         self.selected_piece = None
+        self.game_over = False
         self.turn = 'white'
 
         # try making it chess.board.fen()
@@ -170,6 +171,7 @@ class Board:
         if king.get_valid_moves(self) == []:
             if self.is_in_check(color):
                 output = True
+                self.game_over = output
 
         return output
 
