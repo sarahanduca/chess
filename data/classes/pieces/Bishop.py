@@ -11,7 +11,7 @@ class Bishop(Piece):
         self.img = pygame.image.load(img_path)
         self.img = pygame.transform.scale(
             self.img, (board.tile_width - 20, board.tile_height - 20))
-        value = 30 if color == "white" else -30
+        self.value = 30 if color == "white" else -30
         self.notation = 'B'
 
     def get_possible_moves(self, board):

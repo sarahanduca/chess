@@ -11,7 +11,7 @@ class King(Piece):
         self.img = pygame.image.load(img_path)
         self.img = pygame.transform.scale(
             self.img, (board.tile_width - 20, board.tile_height - 20))
-        value = 900 if color == "white" else -900
+        self.value = 900 if color == "white" else -900
         self.notation = 'K'
 
     def get_possible_moves(self, board):

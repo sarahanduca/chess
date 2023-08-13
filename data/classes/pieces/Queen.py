@@ -11,7 +11,7 @@ class Queen(Piece):
         self.img = pygame.image.load(img_path)
         self.img = pygame.transform.scale(
             self.img, (board.tile_width - 20, board.tile_height - 20))
-        value = 90 if color == "white" else -90
+        self.value = 90 if color == "white" else -90
         self.notation = 'Q'
 
     def get_possible_moves(self, board):

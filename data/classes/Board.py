@@ -183,3 +183,15 @@ class Board:
 
         for square in self.squares:
             square.draw(display)
+
+    def score(self, color):
+        pieces = [
+            i.occupying_piece for i in self.squares if i.occupying_piece is not None]
+        total_score = 0
+        for piece in pieces:
+            if (piece.color == color):
+                total_score += piece.value
+
+        return total_score
+
+    # def moves()

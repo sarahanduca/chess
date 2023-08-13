@@ -20,7 +20,6 @@ def draw(display):
 if __name__ == '__main__':
     running = True
     while running:
-
         mx, my = pygame.mouse.get_pos()
         for event in pygame.event.get():
             # Quit the game if the user presses the close button
