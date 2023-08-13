@@ -26,9 +26,13 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                if (board.turn == "white"):
+                    if event.button == 1:
+                        board.handle_click(mx, my)
+            elif board.turn == "black":
+                minimax(board, 10, -10000, 10000, "black")
+                board.turn = "white"
                 # If the mouse is clicked
-                if event.button == 1:
-                    board.handle_click(mx, my)
         if board.is_in_checkmate('black'):  # If black is in checkmate
             print('White wins!')
             running = False

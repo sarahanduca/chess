@@ -194,4 +194,34 @@ class Board:
 
         return total_score
 
-    # def moves()
+    def get_valid_moves(self):
+        valid_moves = []
+        pieces = [
+            i.occupying_piece for i in self.squares if i.occupying_piece is not None]
+
+        for piece in pieces:
+            if (piece.get_valid_moves(self) != []):
+                valid_moves.append([piece, piece.get_valid_moves(self)])
+
+        return valid_moves
+
+    def make_move(self, piece, position):
+        clicked_square = position
+        self.selected_piece = piece
+
+        if self.selected_piece is None:
+            if clicked_square.occupying_piece is not None:
+                if clicked_square.occupying_piece.color == self.turn:
+                    self.selected_piece = clicked_square.occupying_piece
+
+        elif self.selected_piece.move(self, clicked_square):
+            self.turn = 'white'
+
+        elif clicked_square.occupying_piece is not None:
+            if clicked_square.occupying_piece.color == self.turn:
+                self.selected_piece = clicked_square.occupying_piece
+
+    def unmake_move(self, piece, prev_position):
+        self.selected_piece = piece
+        self.selected_piece = self.get_square_from_pos(
+            prev_position).occupying_piece
