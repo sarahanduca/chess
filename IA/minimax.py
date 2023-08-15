@@ -3,7 +3,6 @@ import chess
 
 
 def get_piece_value(piece, maximize_color):
-    # precisa retornar o valor dependendo da cor
     piece_color = piece.color if maximize_color == 'W' else not piece.color
     if piece.piece_type == 1:
         return 10 if piece_color == maximize_color else -10
