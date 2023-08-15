@@ -76,6 +76,7 @@ def main():
         outcomeText = "Black wins!"
     else:
         print("Draw!")
+        outcomeText = "Draw!"
     writeOnFile(player, ai, outcomeText)
 
 
