@@ -1,5 +1,6 @@
 import chess
 import chess.svg
+import chess.engine
 import IA.minimax as minimax
 import math
 import random
@@ -40,33 +41,29 @@ def main():
     turn = "White"
     player = []
     ai = []
-    count = 0
+    count = 1
 
     while not board.is_game_over():
-        legal_moves = True
         print('Jogada', count)
         count += 1
-        # You can set any desired position here
         display_text_board(board)
-        # print(board)
+
         if turn == "White":
-            print("Movimentos Permitidos: ", board.legal_moves)
-            while legal_moves:
-                move = input("Escreva seu movimento: ")
-                if chess.Move.from_uci(move) in board.legal_moves:
-                    move = chess.Move.from_uci(str(move))
-                    legal_moves = False
-                else:
-                    print("Movimento inválido")
+            move = None
+            with chess.engine.SimpleEngine.popen_uci("./stockfish/stockfish-windows-x86-64.exe") as engine:
+                result = engine.play(board, chess.engine.Limit(time=2.0))
+                move = result.move
+            print("Movimento do Stockfish:", move.uci())
             player.append(move)
             board.push(move)
             turn = "Black"
         else:
-            move, score = minimax.minimax(board, 4, MIN, MAX, True, 'B')
-            print(move, score)
+            move, score = minimax.minimax(board, 6, MIN, MAX, True, 'B')
+            print("Movimento da IA:", move, "Score:", score)
             board.push(move)
             turn = "White"
             ai.append(move)
+
     outcome = board.outcome()
     if outcome.winner == chess.WHITE:
         print("White wins!")
@@ -76,6 +73,8 @@ def main():
         outcomeText = "Black wins!"
     else:
         print("Draw!")
+        outcomeText = "Draw!"
+    
     writeOnFile(player, ai, outcomeText)
 
 
