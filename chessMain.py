@@ -9,17 +9,12 @@ MIN, MAX = -100000, 100000
 
 
 def display_text_board(board):
-    # Create a mapping for file and rank names
+    
     file_names = ' abcdefgh'
     rank_names = ' 12345678'
 
-    # Print the column headers (files)
-    # print('   ' + '  '.join(file_names[1:9]))
-
-    # Loop through ranks in reverse order
     for rank in range(7, -1, -1):
         row = []
-        # Loop through files
         for file in range(8):
             square = chess.square(file, rank)
             piece = board.piece_at(square)
@@ -27,11 +22,9 @@ def display_text_board(board):
                 row.append(piece.symbol())
             else:
                 row.append(' ')
-        # Print rank name and row
         print(rank_names[rank + 1] + ' | ' + ' | '.join(row) + ' | ')
         print('  ---------------------------------')
 
-    # Print the column headers (files) again at the bottom
     print('    ' + '   '.join(file_names[1:9]))
 
 
@@ -46,9 +39,7 @@ def main():
         legal_moves = True
         print('Jogada', count)
         count += 1
-        # You can set any desired position here
         display_text_board(board)
-        # print(board)
         if turn == "White":
             print("Movimentos Permitidos: ", board.legal_moves)
             while legal_moves:
