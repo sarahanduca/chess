@@ -58,7 +58,7 @@ def main():
             board.push(move)
             turn = "Black"
         else:
-            move, score = minimax.minimax(board, 6, MIN, MAX, True, 'B')
+            move, score = minimax.minimax(board, 3, MIN, MAX, True, 'B')
             print("Movimento da IA:", move, "Score:", score)
             board.push(move)
             turn = "White"
